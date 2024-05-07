@@ -1,8 +1,8 @@
 import { MutableRefObject } from "react";
-import { ParticipantPopulated } from "../../backend/src/util/types";
+
 
 export const formatUsers = (
-  participants: Array<ParticipantPopulated>,
+  participants: Array<any>,
   myUserId: string
 ): string => {
   const names = participants
@@ -13,14 +13,14 @@ export const formatUsers = (
 };
 
 export const getImageUrl = (
-  participants: Array<ParticipantPopulated>,
+  participants: Array<any>,
   myUserId: string
 ): string | null => {
   const imageUrl = participants
     ?.filter(
-      (participant: ParticipantPopulated) => participant?.user?.id !== myUserId
+      (participant: any) => participant?.user?.id !== myUserId
     )
-    ?.map((participant: ParticipantPopulated) => participant?.user?.image)?.[0];
+    ?.map((participant: any) => participant?.user?.image)?.[0];
 
   return imageUrl;
 };

@@ -4,7 +4,6 @@ import TextareaAutosize from "react-textarea-autosize";
 import { MessagesData, User } from "@/typings";
 import { useMutation } from "@apollo/client";
 import MessageOperations from "@/graphql/operations/message";
-import { SendMessageArguments } from "@/../backend/src/util/types";
 import { client } from "@/graphql/apollo-client";
 import { ObjectID } from "bson";
 import { scrollToBottom } from "@/utils/functions";
@@ -35,7 +34,7 @@ const MessageFooter = ({
   const [message, setMessage] = useState<string>("");
   const [sendMessage] = useMutation<
     { sendMessage: boolean },
-    SendMessageArguments
+    any
   >(MessageOperations.Mutation.sendMessage, {
     client: client,
     onError: (error: any) => {
@@ -52,7 +51,7 @@ const MessageFooter = ({
       const messageId = new ObjectID().toString();
       const encryptedMessage = encryptMessage(conversationId, message);
 
-      const newMessage: SendMessageArguments = {
+      const newMessage: any = {
         id: messageId,
         senderId,
         conversationId,

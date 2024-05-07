@@ -1,12 +1,11 @@
 import React from "react";
-import { MessagePopulated } from "@/../backend/src/util/types";
 import { Arrow } from "../shared/Icons";
 import { format } from "date-fns";
 import { decryptMessage } from "@/protocol/mtp";
 
 type MessageBoxProps = {
   conversationId: string;
-  message: MessagePopulated & {
+  message: any & {
     body: string;
   };
   sentByMe: boolean;
