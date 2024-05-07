@@ -1,6 +1,5 @@
 import React from "react";
 import Avatar from "@/components/shared/Avatar";
-import { ConversationPopulated } from "@/../backend/src/util/types";
 import { formatUsers, getImageUrl } from "@/utils/functions";
 import { formatRelative } from "date-fns";
 import enUS from "date-fns/locale/en-US";
@@ -14,7 +13,7 @@ const formatRelativeLocale = {
 };
 
 type ChatCardProps = {
-  conversation: ConversationPopulated;
+  conversation: any;
   userId?: string | null;
   isSelected: boolean;
   onClick: () => void;

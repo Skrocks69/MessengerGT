@@ -4,10 +4,6 @@ import { gql, useMutation, useQuery, useSubscription } from "@apollo/client";
 import ConversationOperations from "../../graphql/operations/conversation";
 import { client } from "@/graphql/apollo-client";
 import { ConversationUpdatedData, ConversationsData } from "@/typings";
-import {
-  ConversationPopulated,
-  ParticipantPopulated,
-} from "@/../backend/src/util/types";
 import { useRecoilState } from "recoil";
 import { conversationState } from "@/recoil/atom";
 import { User } from "@/typings";
@@ -76,7 +72,7 @@ const Chats = ({ user }: { user?: User }) => {
 
         update: (cache) => {
           const participantsFragment = cache.readFragment<{
-            participants: Array<ParticipantPopulated>;
+            participants: Array<any>;
           }>({
             id: `Conversation:${conversationId}`,
             fragment: gql`
@@ -136,7 +132,7 @@ const Chats = ({ user }: { user?: User }) => {
           subscriptionData,
         }: {
           subscriptionData: {
-            data: { conversationCreated: ConversationPopulated };
+            data: { conversationCreated: any };
           };
         }
       ) => {
@@ -150,7 +146,7 @@ const Chats = ({ user }: { user?: User }) => {
 
         if (otherParticipantsLength === 2) {
           const otherParticipant = newConversation.participants.find(
-            (p) => p.user.id !== userId
+            (p:any) => p.user.id !== userId
           )?.user;
 
           const otherParticipantPublicKey = otherParticipant?.publicKey;
@@ -170,11 +166,11 @@ const Chats = ({ user }: { user?: User }) => {
           }
         } else {
           const otherParticipants = newConversation.participants.filter(
-            (p) => p.user.id !== userId
+            (p:any) => p.user.id !== userId
           );
 
           const otherParticipantsPublicKeys = otherParticipants?.map(
-            (p) => p.user.publicKey
+            (p:any) => p.user.publicKey
           );
 
           console.log(otherParticipantsPublicKeys);
@@ -218,7 +214,7 @@ const Chats = ({ user }: { user?: User }) => {
             .map((e, i) => <ChatSkeleton key={i} />)
         : sortedConversations?.map((conversation) => {
             const participant = conversation.participants.find(
-              (p) => p.user.id === user?.id
+              (p:any) => p.user.id === user?.id
             );
 
             return (

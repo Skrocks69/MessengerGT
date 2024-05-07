@@ -1,4 +1,4 @@
-import { ConversationPopulated } from "../backend/src/util/types";
+
 
 interface SearchUserInput {
   email: string;
@@ -26,16 +26,16 @@ interface CreateConversationInput {
 }
 
 interface ConversationsData {
-  conversations: Array<ConversationPopulated>;
+  conversations: Array<any>;
 }
 
 interface ConversationUpdatedData {
   conversationUpdated: {
-    conversation: ConversationPopulated;
+    conversation: any;
   };
 }
 
-interface User {
+export interface User {
   id?: string | null | undefined;
   name?: string | null | undefined;
   email?: string | null | undefined;
